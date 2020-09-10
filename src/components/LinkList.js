@@ -3,18 +3,19 @@ import Link from "./Link";
 import { Query } from "react-apollo";
 import { gql } from "@apollo/client";
 
+const FEED_QUERY = gql`
+  query {
+    feed {
+      links {
+        url
+        description
+      }
+    }
+  }
+`;
+
 class LinkList extends Component {
   render() {
-    const FEED_QUERY = gql`
-      query {
-        feed {
-          links {
-            url
-            description
-          }
-        }
-      }
-    `;
     return (
       <Query query={FEED_QUERY}>
         {({ loading, error, data }) => {
