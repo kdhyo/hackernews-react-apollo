@@ -2,6 +2,16 @@ import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import { gql } from "@apollo/client";
 
+const POST_MUTATION = gql`
+  mutation PostMutation($description: String!, $url: String!) {
+    post(description: $description, url: $url) {
+      id
+      createdAt
+      url
+      description
+    }
+  }
+`;
 class CreateLink extends Component {
   state = {
     description: "",
@@ -10,18 +20,6 @@ class CreateLink extends Component {
 
   render() {
     const { description, url } = this.state;
-
-    const POST_MUTATION = gql`
-      mutation PostMutation($description: String!, $url: String!) {
-        post(description: $description, url: $url) {
-          id
-          createdAt
-          url
-          description
-        }
-      }
-    `;
-
     return (
       <div>
         <div className="flex flex-column mt3">
